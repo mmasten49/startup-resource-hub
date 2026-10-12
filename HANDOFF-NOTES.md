@@ -209,6 +209,19 @@ The prompt stays short on purpose: the process lives in this repo, so improving 
 
 Docs: routines https://code.claude.com/docs/en/routines · cloud environments and network access https://code.claude.com/docs/en/cloud-environments
 
+## 8. Decisions already made, and why
+
+So any future Claude session or intern doesn't reopen them without a reason:
+
+- **Static files on GitHub and Netlify, not Base44.** The hubs ran on Matthew Masten's personal Base44 account, which Alloy wasn't going to pay for. Static files cost nothing, belong to Alloy, and are easy for Claude Code to edit.
+- **Not Floot or a rebuilt backend.** Either would recreate the personal-account problem, add cost, and be harder to maintain.
+- **No admin login.** Edits go through Claude Code and pull requests. One less thing to secure or forget a password for.
+- **No AI auto-publishing.** The old "discover grants" button published unverified grants straight to the site (see the appendix). It was removed, and the weekly routine proposes changes instead of publishing them.
+- **Friday routine, Monday newsletter.** Friday gives the owner a full workday plus the weekend to approve before the 8:30 AM Monday send.
+- **`.netlify.app` addresses are fine.** The owner approved them. Never use GitHub Pages addresses in the newsletter (section 6, step 3).
+- **The newsletter is drafted in the owner's Claude**, moved from ChatGPT in October 2026, so the hubs, the weekly review and the newsletter all live in one place.
+- **This is separate from the Alloy Development Co. small-business hub** (the Base44 app Greg Forte and Caitlin Siegelhartzler administer). Different organization, different app, different handoff. Don't merge them or move changes between them.
+
 ---
 
 ## Appendix: why these rules exist (October 2026 audit)
