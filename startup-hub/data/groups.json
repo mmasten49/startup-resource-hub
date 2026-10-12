@@ -1,0 +1,62 @@
+[
+  {
+    "id": "founder-fundamentals",
+    "name": "Founder Fundamentals",
+    "blurb": "Incorporate, protect your IP, split equity fairly, and build the strategic foundation for a fundable business.",
+    "subcategories": [
+      {"id": "incorporation-legal", "name": "Incorporation & Legal"},
+      {"id": "equity-cofounders", "name": "Equity & Co-founders"},
+      {"id": "foundations", "name": "Strategy & Fundamentals"}
+    ]
+  },
+  {
+    "id": "product-design",
+    "name": "Product & Design",
+    "blurb": "Talk to users, prototype fast, and build the right product with data-informed decisions.",
+    "subcategories": [
+      {"id": "customer-development", "name": "Customer Development"},
+      {"id": "building", "name": "Building & Prototyping"},
+      {"id": "metrics", "name": "Metrics & Pricing"}
+    ]
+  },
+  {
+    "id": "growth-marketing",
+    "name": "Growth & Marketing",
+    "blurb": "Launch with impact, tell your story, and turn early traction into repeatable, scalable growth.",
+    "subcategories": [
+      {"id": "launch-pr", "name": "Launch & PR"},
+      {"id": "growth-tactics", "name": "Growth Tactics & Acquisition"},
+      {"id": "brand", "name": "Brand & Category Design"}
+    ]
+  },
+  {
+    "id": "team-culture",
+    "name": "Team & Culture",
+    "blurb": "Hire the right people, lead with intention, and build a culture — and personal habits — that go the distance.",
+    "subcategories": [
+      {"id": "hiring-talent", "name": "Hiring & Talent"},
+      {"id": "culture-leadership", "name": "Culture & Leadership"},
+      {"id": "wellbeing", "name": "Wellbeing & Burnout"}
+    ]
+  },
+  {
+    "id": "finance-capital-ops",
+    "name": "Finance, Capital & Ops",
+    "blurb": "Understand your numbers, raise money the smart way, and build relationships with investors and corporate partners.",
+    "subcategories": [
+      {"id": "fundraising", "name": "Fundraising & Investors"},
+      {"id": "financials", "name": "Financials & Accounting"},
+      {"id": "partnerships", "name": "Partnerships & Corporate"}
+    ]
+  },
+  {
+    "id": "policy-grants-ecosystem",
+    "name": "Policy, Grants & Ecosystem",
+    "blurb": "Tap into public funding, government programs, and ecosystem support built for growing businesses.",
+    "subcategories": [
+      {"id": "grants-funding", "name": "Grants & Federal Funding"},
+      {"id": "government-resources", "name": "Government & State Resources"},
+      {"id": "programs", "name": "Programs & Challenges"}
+    ]
+  }
+]

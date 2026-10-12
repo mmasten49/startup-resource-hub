@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit a Resource — Startup Resource Hub</title>
+  <link rel="icon" type="image/png" href="assets/alloy-logo-square.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="./"><img src="assets/alloy-logo-wide.png" alt="Alloy Growth Lab" /></a>
+    <nav>
+      <a href="./">Home</a>
+      <a href="./#review">Reviews</a>
+      <a href="submit.html">Submit a Resource</a>
+      <a class="btn-dark" href="https://alloygrowthlab.com" target="_blank" rel="noopener noreferrer">Join Alloy</a>
+    </nav>
+  </header>
+
+  <section class="submit-wrap">
+    <div class="eyebrow">ALLOY GROWTH LAB</div>
+    <h1>Submit a Resource</h1>
+    <p class="lede">Know a guide, template, or tool that helped you build? Share it with the founder community. Submissions are reviewed before appearing in the hub.</p>
+
+    <!-- Netlify Forms: submissions land in the Netlify dashboard (Forms tab) and can be emailed to the team.
+         Nothing is published automatically; a reviewer adds approved ones to data/resources.json. -->
+    <form class="form" name="submit-resource" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="submit-resource" />
+      <p class="hidden"><label>Leave this empty: <input name="bot-field" /></label></p>
+
+      <div class="field">
+        <label for="title">Resource title</label>
+        <input id="title" name="title" type="text" placeholder="e.g. How to Talk to Users — Y Combinator" required />
+      </div>
+      <div class="field">
+        <label for="url">URL</label>
+        <input id="url" name="url" type="url" placeholder="https://" pattern="https?://.+" required />
+      </div>
+      <div class="field">
+        <label for="group">Category</label>
+        <select id="group" name="category"></select>
+      </div>
+      <div class="field">
+        <label for="sub">Subcategory</label>
+        <select id="sub" name="subcategory"></select>
+      </div>
+      <div class="field">
+        <label for="email">Your email <span class="hint">(optional, only if you want a reply)</span></label>
+        <input id="email" name="email" type="email" />
+      </div>
+      <div class="actions">
+        <button class="btn-submit" type="submit">Submit for review</button>
+        <a class="btn-cancel" href="./">Cancel</a>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    (function () {
+      var groupSel = document.getElementById("group");
+      var subSel = document.getElementById("sub");
+      var groups = [];
+      function fillSubs() {
+        var g = groups.find(function (x) { return x.name === groupSel.value; });
+        subSel.innerHTML = (g ? g.subcategories : []).map(function (s) {
+          return '<option>' + s.name.replace(/</g, "&lt;") + '</option>';
+        }).join("");
+      }
+      fetch("data/groups.json").then(function (r) { return r.json(); }).then(function (data) {
+        groups = data;
+        groupSel.innerHTML = groups.map(function (g) {
+          return '<option>' + g.name.replace(/</g, "&lt;") + '</option>';
+        }).join("");
+        fillSubs();
+      });
+      groupSel.addEventListener("change", fillSubs);
+    })();
+  </script>
+</body>
+</html>
