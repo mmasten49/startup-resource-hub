@@ -13,7 +13,7 @@ How the Startup Resource Hub and the Small-Business Grant Finder are kept accura
 | Resource listings | `startup-hub/data/resources.json` |
 | Live sites | Netlify URLs: fill in here after setup step 2 in section 6. Until then, the Base44 versions are live |
 | Resource submissions | Netlify dashboard → the Resource Hub site → Forms |
-| Weekly review | Scheduled task on the owner's Claude account, Fridays 8:00 AM Eastern |
+| Weekly review | Routine on the owner's Claude account (claude.ai/code/routines), Fridays about 8:00 AM Eastern |
 | Newsletter | Alloy Growth Lab Weekly, Mondays 8:30 AM. Drafted in the owner's Claude ("Alloy Weekly" project) from his weekly notes plus Friday's grant blurb, then sent from Constant Contact |
 
 ### Words used here
@@ -88,14 +88,14 @@ Lower stakes, lighter bar: the link opens the actual guide or tool (not a homepa
 
 ### Weekly grant review (automated, Fridays)
 
-The most important routine. A scheduled task on the owner's Claude account runs it every Friday at 8:00 AM Eastern and hands the owner one pull request. The newsletter goes out Monday at 8:30 AM, so the window to merge is Friday through Monday 8:00 AM.
+The most important routine. A scheduled task on the owner's Claude account runs it every Friday at about 8:00 AM Eastern and hands the owner one pull request. The newsletter goes out Monday at 8:30 AM, so the window to merge is Friday through Monday 8:00 AM.
 
 **What the run does, in order:**
 1. **Network check first.** Open three known-good official pages (sbir.gov, seed.nih.gov, sba.gov). If they don't load, the session can't reach websites: stop, change nothing, and report "weekly review skipped: no web access". Never mark a grant closed because its page wouldn't load.
 2. **Review every listed grant** against its official page using section 3: still open, facts unchanged, eligibility and fee unchanged. Recalculate `urgency` from today's date.
 3. **Find up to 3 new grants** that pass every check in section 3, starting from the sources listed under "Adding new grants" below. Ohio and Cincinnati programs first. Zero is an acceptable answer; never add a weak one to hit a number.
 4. **Quarterly add-on.** If today is the first Friday of January, April, July or October, also run the quarterly link check (below) on both hubs and include proposed link fixes in the same pull request. This is the only time the run touches `startup-hub/`, and only to fix links.
-5. **Open the pull request.** First, if last week's `weekly-review/...` pull request is still open, close it with the comment "Superseded by this week's review" so the owner only ever has one to look at. Then start a new branch `weekly-review/YYYY-MM-DD` from the current `main`, make the edits, set `last_reviewed` to today, run the pre-commit checks in CLAUDE.md, and open the pull request. Open one every week, even when nothing else changed: it then contains only the `last_reviewed` date, which keeps the public "List reviewed" date honest.
+5. **Open the pull request.** First, if last week's `claude/weekly-review-...` pull request is still open, close it with the comment "Superseded by this week's review" so the owner only ever has one to look at. Then start a new branch `claude/weekly-review-YYYY-MM-DD` from the current `main`, make the edits, set `last_reviewed` to today, run the pre-commit checks in CLAUDE.md, and open the pull request. If the session can't open a pull request itself, push the branch and put the branch link in the summary; the owner then clicks **Compare & pull request** on GitHub. Open one every week, even when nothing else changed: it then contains only the `last_reviewed` date, which keeps the public "List reviewed" date honest.
 6. **The pull request description** contains:
    - a table of every grant: ok / updated / removed / new, what changed, and the evidence URL
    - anything the run was unsure about, listed separately and left unchanged
@@ -109,14 +109,14 @@ The most important routine. A scheduled task on the owner's Claude account runs 
 2. **Read the table** in the pull request description. Click the evidence link for anything marked new, updated or removed, and look over the "unsure" list.
 3. **Decide:**
    - **All good:** click the green **Merge pull request** button, then **Confirm merge**. Done. The site updates in a minute or two.
-   - **Most of it is good:** open Claude Code on the repo and say, for example, "In this week's weekly-review pull request, drop the change to the NASE grant, then I'll merge." Then merge.
+   - **Most of it is good:** open Claude Code on the repo and say, for example, "In this week's weekly review pull request, drop the change to the NASE grant, then I'll merge." Then merge.
    - **None of it is good:** click **Close pull request**. Nothing changes on the site.
 4. **Deadline:** Monday 8:00 AM, so the newsletter blurb matches the site.
 
 **If something looks wrong:**
 - **No notification and no pull request by Friday noon:** the run failed. Run the manual fallback below, or skip the week (the site just stays as it was).
-- **The summary says "skipped: no web access":** the scheduled task's environment has network access turned off. Fix it (section 7, step 1); the next Friday run will work.
-- **You merged something you shouldn't have:** open Claude Code on the repo and say "Revert the last weekly-review merge." It undoes that merge in one step and the site goes back.
+- **The summary says "skipped: no web access":** the routine's environment is blocking websites. Fix it (section 7, step 2); the next Friday run will work.
+- **You merged something you shouldn't have:** open Claude Code on the repo and say "Revert the last weekly review merge." It undoes that merge in one step and the site goes back.
 - **You merged but the site didn't change after a few minutes:** check the site's **Deploys** tab in Netlify for an error.
 
 **Manual fallback** (if the scheduled task fails or is off), paste into Claude Code from a session that can open websites:
@@ -180,21 +180,34 @@ Setup still to do (in this order):
 
 **For the next Castleberry intern:** start with this file. The intern takes over the newsletter editor and maintainer roles in section 1; the owner keeps approving the Friday pull request. Ask the owner to share the Alloy Weekly project instructions, or recreate the project from them.
 
-## 7. Setting up the weekly scheduled task (owner, once, about 10 minutes)
+## 7. Setting up the weekly scheduled task (owner, once, about 15 minutes)
 
-1. In Claude, create a scheduled task: **Fridays, 8:00 AM Eastern**, in a cloud environment with this repo attached and **network access enabled**. The default setting can block outside websites, which makes the run skip itself. To change it: open the cloud environment menu in the session's title bar, click **Edit**, and under **Network access** choose full access. Docs: https://code.claude.com/docs/en/cloud-environments#network-access
-2. Give it push access to the repo so it can open pull requests.
-3. Model: Sonnet is plenty for this job and keeps usage low.
-4. Turn on notifications so the summary reaches you when it finishes. Also check that GitHub emails you about new pull requests on this repo (GitHub → Settings → Notifications).
-5. Use this as the task's prompt:
+Claude calls these scheduled tasks **routines**. They need a paid Claude plan (Pro, Max, Team or Enterprise), and they run as the owner: pull requests show up under the owner's GitHub name.
+
+1. **Connect GitHub to Claude Code** at claude.ai/code and install the Claude GitHub App on this repo when asked. It needs the app to reach the repo once the repo is private.
+2. **Allow web access.** Routines use the **Default** environment, which blocks most websites, including grant pages. At claude.ai/code, open the environment selector (the cloud icon showing **Default**), hover over the environment, click the settings icon, set **Network access** to **Full**, and save. Without this, every Friday run skips itself (section 4, step 1).
+3. Go to **claude.ai/code/routines → New routine**:
+   - **Name:** Grant Finder weekly review
+   - **Prompt:** paste the prompt below. Pick **Sonnet** in the model selector; it is plenty for this job and keeps usage low.
+   - **Repository:** this repo.
+   - **Environment:** the one from step 2.
+   - **Trigger:** Schedule, **Weekly, Friday, 8:07 AM**. Runs set exactly on the hour can start several minutes late, so a few minutes past is more reliable.
+   - **Connectors:** remove all of them. The routine only needs GitHub, which it gets through the repository, and any connector left on can be used without asking.
+   - Click **Create**.
+4. Make sure GitHub emails you about new pull requests on this repo (GitHub → Settings → Notifications).
+5. **Test it now:** on the routine's page, click **Run now**. Open the run, read what it did, and check that a pull request (or a pushed branch) appeared. A green status only means the run didn't crash, not that it worked, so read the transcript. Then close or merge the test pull request.
+
+To pause the routine (for example over a holiday), use the on/off switch on its page.
+
+**The routine's prompt:**
 
 ```
-You maintain the Alloy Growth Lab Grant Finder in this repo. Read CLAUDE.md and HANDOFF-NOTES.md, then run the "Weekly grant review" in HANDOFF-NOTES.md section 4 exactly as written. Follow steps 1 to 6; never push to main. Finish with a three-line summary: grants checked, changes proposed, and the pull request link (or "skipped: no web access").
+You maintain the Alloy Growth Lab Grant Finder in this repo. Read CLAUDE.md and HANDOFF-NOTES.md, then run the "Weekly grant review" in HANDOFF-NOTES.md section 4 exactly as written. Follow steps 1 to 6; never push to main. Finish with a three-line summary: grants checked, changes proposed, and the pull request link (or the branch link, or "skipped: no web access").
 ```
 
-6. **Test it once:** run the task manually right after creating it. Confirm it opens a pull request, read it, and close or merge it. Don't wait for the first Friday to find out it's misconfigured.
+The prompt stays short on purpose: the process lives in this repo, so improving the routine means editing HANDOFF-NOTES.md, not the routine.
 
-The prompt stays short on purpose: the process lives in this repo, so improving the routine means editing HANDOFF-NOTES.md, not the scheduled task.
+Docs: routines https://code.claude.com/docs/en/routines · cloud environments and network access https://code.claude.com/docs/en/cloud-environments
 
 ---
 
