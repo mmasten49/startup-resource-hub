@@ -172,7 +172,7 @@ Open decisions for the owner:
 Setup still to do (in this order):
 1. Transfer this repo to the owner's GitHub account.
 2. Connect both folders to Netlify under Alloy's account (steps in README.md). Turn on Forms email notifications for the Resource Hub.
-3. Unpublish the two Base44 apps. From then on, the transition rule in section 2 no longer applies.
+3. Switch the newsletter's hub links to the new Netlify URLs (or a custom subdomain such as `resources.alloygrowthlab.com`, which never has to change again). Then unpublish the two Base44 apps. From then on, the transition rule in section 2 no longer applies. Never put GitHub Pages links in the newsletter: they change when the repo moves and stop working when it goes private.
 4. Set up the weekly scheduled task on the owner's Claude account (section 7). Do this only after step 3: until Base44 is unpublished, the task's edits wouldn't reach the live site.
 5. Make the repo private (repo → Settings → General → Danger Zone → Change visibility). It is public right now, so anyone can read these notes. Netlify works the same with a private repo; only the GitHub Pages preview stops.
 6. Fill in the live Netlify URLs in the quick reference at the top of this file.
