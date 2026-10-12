@@ -2,7 +2,7 @@
 
 > **Links were not opened directly** (this session's network blocked every site), so everything below comes from web search. **Click each replacement URL before using it.**
 
-This covers the 23 grants in `grant-finder/data/grants.json` only. The 91 Startup Resource Hub links were not checked. Nothing in the JSON was changed; Antony decides what to apply.
+This covers the 23 grants in `grant-finder/data/grants.json` only. The 91 Startup Resource Hub links were not checked. **Update Oct 11, 2026: changes applied by Matthew. See "Applied" at the bottom.**
 
 **Summary:** keep 3, fix 6 (for 3 of those, removing is also an option), remove 14. Only one Ohio-specific grant is on the list, and its link goes to a paid aggregator.
 
@@ -90,3 +90,20 @@ A full link check (both hubs) still needs to be done from a machine with normal 
 1. Check that the JSON still parses: `python3 -m json.tool grant-finder/data/grants.json > /dev/null`
 2. Set `last_reviewed` in `grants.json` to the date the changes are made.
 3. Removing the 14 grants marked remove leaves 9. Only one of those (#23 Ohio, Dec 18) has a real date in the file, and it's flagged for replacement. So the calendar download could end up empty unless real dates are added (for example NSF's Nov 4 deadline). It's worth adding a few real Ohio or Cincinnati programs (JobsOhio, Ohio TechCred, local CDFI or chamber grants) so the list stays useful.
+
+---
+
+## Applied (Oct 11, 2026)
+
+Matthew approved pulling everything that isn't real or doesn't fit. Applied to both `grants.json` and the live Base44 Grant Finder, so they match.
+
+- **Removed 15:** the 14 marked remove above, plus #23 Ohio Small Business Support Grants (couldn't be traced to a real program). On Base44 they were moved to the trash, not erased, so they can be restored. The originals are also in git history (commit `ffb8209`).
+- **Fixed 4 links, each opened and confirmed to load:**
+  - NASE: `https://www.nase.org/become-a-member/grants-and-scholarships` (confirms up to $4,000, members only)
+  - NIH: `https://seed.nih.gov/` (NIH's SBIR/STTR hub; COVID wording removed)
+  - SBA STEP: the STEP awardee directory (lists Ohio's contact at the Ohio Department of Development)
+  - EDA: `https://www.eda.gov/funding/programs/public-works` ("best for" reworded: businesses can't apply directly)
+- **Left as is, still Antony's call:** Secretsos (charges an application fee) and EDA (real, but founders can't apply).
+- `last_reviewed` set to 2026-10-11.
+
+**8 grants remain, and none has a dated deadline,** so the calendar download is disabled until real dated programs are added. Next step: add verified Ohio and Cincinnati programs (JobsOhio Small Business Grant, Ohio TechCred, REDI Cincinnati, local CDFIs) from their official pages.
