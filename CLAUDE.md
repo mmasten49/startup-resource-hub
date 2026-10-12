@@ -11,10 +11,10 @@ The repo root `index.html` is just a landing page linking to both.
 
 ## Before any content change, read HANDOFF-NOTES.md
 
-`HANDOFF-NOTES.md` is the operating process: roles, the routines (monthly grant review, new grants, submissions, quarterly link check) with ready-made prompts, and the bar every listing must clear (section 3). Follow it. In short:
+`HANDOFF-NOTES.md` is the operating process: roles, the routines (weekly automated grant review, new grants, submissions, quarterly link check) with ready-made prompts, and the bar every listing must clear (section 3). Follow it. In short:
 
 - Never add or edit a grant from an aggregator, news article, search snippet or your own memory. Verify every field against the funder's official page and show the person the evidence.
-- Propose changes and wait for a person's yes before editing listings.
+- Propose changes and wait for a person's yes before editing listings. Scheduled runs open a pull request and never push listing changes to `main`.
 - Until the Base44 sites are unpublished, tell the person any content change also has to be made in the Base44 app.
 
 ## Most common job: add, edit, or remove a listing
@@ -36,7 +36,7 @@ Almost every request will be "add this resource", "remove that grant", "fix this
 {"title": "...", "description": "One or two plain sentences.", "funding": "$10,000", "deadline": "December 18, 2026", "best_for": "Who should apply", "urgency": "upcoming", "category": "general", "url": "https://..."}
 ```
 
-- `urgency`: `closing_soon` (dated deadline within 30 days), `upcoming` (dated deadline further out), or `rolling` (no fixed deadline). The site doesn't calculate this; recheck it at each monthly review.
+- `urgency`: `closing_soon` (dated deadline within 30 days), `upcoming` (dated deadline further out), or `rolling` (no fixed deadline). The site doesn't calculate this; the weekly review rechecks it.
 - `category`: `tech`, `health`, `infra`, or `general`.
 - `deadline`: write a real date like `December 18, 2026` when there is one. The page hides grants whose dated deadline has passed and puts dated ones in the calendar download. Text like `Rolling` or `Varies` is fine for open-ended programs. Never write `Rolling through <date>`: anything containing "Rolling" is treated as open-ended and never hides itself, so write the end date instead.
 - After reviewing or updating the list, set `last_reviewed` at the top of `grants.json` to today's date (`YYYY-MM-DD`). The page shows it as "List reviewed <date>". Don't change it unless the list was actually checked.

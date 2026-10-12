@@ -12,9 +12,9 @@ How the Startup Resource Hub and the Small-Business Grant Finder are kept accura
 | --- | --- | --- |
 | Owner | Antony Seppi | Approves anything that changes what founders see. Decides exceptions to the rules below. |
 | Maintainer | Whoever Antony assigns | Runs the routines in section 4, verifies listings, makes the edits. |
-| Claude Code | Used by either | Does the research, checking and file edits. Proposes changes; does not publish without a person's yes. |
+| Claude Code | Weekly scheduled task on the owner's Claude account, plus on-demand use | Does the research, checking and file edits. Opens a pull request; never pushes listing changes to `main` itself. |
 
-If no maintainer is assigned, the owner runs the monthly review. Skipping it is how a grant list goes stale.
+The owner's one recurring job is merging (or rejecting) the weekly pull request. If the scheduled task stops running, the owner or maintainer runs the review by hand with the prompt in section 4. Skipping it is how a grant list goes stale.
 
 ## 2. How a change flows
 
@@ -48,7 +48,7 @@ Run the pre-commit checks (CLAUDE.md)  ──▶  Commit with a clear message  �
 
 **Exceptions** (membership-gated grants, programs founders reach through an intermediary) need the owner's yes, and the description must say so in plain words, for example "NASE members only; membership is paid."
 
-**Setting `urgency`** (the site does not calculate it, so set it by this rule and recheck monthly):
+**Setting `urgency`** (the site does not calculate it, so set it by this rule; the weekly review rechecks it):
 - `closing_soon`: dated deadline within 30 days
 - `upcoming`: dated deadline more than 30 days out
 - `rolling`: no fixed deadline
@@ -61,20 +61,33 @@ Lower stakes, lighter bar: the link opens the actual guide or tool (not a homepa
 
 ## 4. Routines
 
-### Monthly grant review (first week of each month, about 30 minutes)
+### Weekly grant review (automated, Saturdays)
 
-The most important routine. Paste into Claude Code from a session that can open websites:
+The most important routine. A scheduled task on the owner's Claude account runs it every Saturday morning and hands the owner one pull request to approve before the weekly newsletter goes out.
+
+**What the run does, in order:**
+1. **Network check first.** Open three known-good official pages (sbir.gov, seed.nih.gov, sba.gov). If they don't load, the session can't reach websites: stop, change nothing, and report "weekly review skipped: no web access". Never mark a grant closed because its page wouldn't load.
+2. **Review every listed grant** against its official page using section 3: still open, facts unchanged, eligibility and fee unchanged. Recalculate `urgency` from today's date.
+3. **Find up to 3 new grants** that pass every check in section 3, starting from the sources listed under "Adding new grants" below. Ohio and Cincinnati programs first. Zero is an acceptable answer; never add a weak one to hit a number.
+4. **If anything should change:** make the edits on a new branch `weekly-review/YYYY-MM-DD`, set `last_reviewed` to today, run the pre-commit checks in CLAUDE.md, and open a pull request. If nothing changed, set only `last_reviewed` in that pull request, so the public "List reviewed" date stays honest.
+5. **The pull request description** contains:
+   - a table of every grant: ok / updated / removed / new, what changed, and the evidence URL
+   - anything the run was unsure about, listed separately and left unchanged
+   - a ready-to-paste newsletter blurb: "New on the Grant Finder" and "Closing soon", two to four lines each, no more
+
+**The owner then reviews and merges.** Merging redeploys the site. Not merging changes nothing; the site stays as it was. Nothing reaches founders without that click.
+
+**Guardrails for the run:** never push to `main`; never use an aggregator, news article or search snippet as a source; never remove a grant on a hunch, only with evidence from its official page; never touch `startup-hub/` in this routine.
+
+**Manual fallback** (if the scheduled task fails or is off), paste into Claude Code from a session that can open websites:
 
 ```
-Run the monthly Grant Finder review using HANDOFF-NOTES.md section 3.
-For every grant in grant-finder/data/grants.json: open the official page, confirm it is still open, and check funding, deadline, eligibility and fee against the page. Recalculate urgency from today's date.
-Then show me a table: grant, status (ok / update / remove), what changed, evidence URL.
-Do not edit anything until I approve. After I approve, make the edits, set last_reviewed to today, run the pre-commit checks, and commit as "Grant Finder: monthly review YYYY-MM".
+Run the weekly Grant Finder review exactly as described in HANDOFF-NOTES.md section 4, "Weekly grant review", steps 1 to 5. Open a pull request; do not push to main.
 ```
 
-Outcome to aim for: no expired grants on the page, every urgency label correct, `last_reviewed` within the last 31 days.
+Outcome to aim for: no expired grants on the page, every urgency label correct, `last_reviewed` never more than 8 days old.
 
-### Adding new grants (during the monthly review, target 2 to 3 a month until the list has real Ohio coverage)
+### Adding new grants (handled by the weekly review; also on demand)
 
 Where to look for leads (still verify each on its own official page):
 - Ohio Department of Development (including Ohio's STEP export grants)
@@ -101,7 +114,7 @@ Note: Claude Code cloud sessions can block outside websites by default. If every
 ## 5. Records
 
 - **Git history is the change log.** One clear commit message per change, for example `Grant Finder: add JobsOhio Small Business Grant` or `Grant Finder: remove UArctic Fund (closed Oct 31)`.
-- **`last_reviewed`** in `grants.json` is changed only after a full monthly review. It is shown publicly as "List reviewed <date>", so it must be true.
+- **`last_reviewed`** in `grants.json` is changed only by a completed weekly review (in its pull request). It is shown publicly as "List reviewed <date>", so it must be true.
 - **Nothing is lost.** Every removed listing is recoverable from git history.
 
 ## 6. Current state (October 12, 2026)
@@ -118,7 +131,22 @@ Setup still to do (in this order):
 1. Transfer this repo to the owner's GitHub account.
 2. Connect both folders to Netlify under Alloy's account (steps in README.md). Turn on Forms email notifications for the Resource Hub.
 3. Unpublish the two Base44 apps. From then on, the transition rule in section 2 no longer applies.
-4. Run the first quarterly link check. The 91 Resource Hub links have never been checked.
+4. Set up the weekly scheduled task on the owner's Claude account (section 7). Do this only after step 3: until Base44 is unpublished, the task's edits wouldn't reach the live site.
+5. Run the first quarterly link check. The 91 Resource Hub links have never been checked.
+
+## 7. Setting up the weekly scheduled task (owner, once, about 10 minutes)
+
+1. In Claude, create a scheduled task: **Saturdays, 7:45 AM Eastern**, in a cloud environment with this repo attached and **network access enabled** (the default setting can block outside websites, which makes the run skip itself in step 1).
+2. Give it push access to the repo so it can open pull requests.
+3. Model: Sonnet is plenty for this job and keeps usage low.
+4. Turn on notifications so the summary reaches you when it finishes.
+5. Use this as the task's prompt:
+
+```
+You maintain the Alloy Growth Lab Grant Finder in this repo. Read CLAUDE.md and HANDOFF-NOTES.md, then run the "Weekly grant review" in HANDOFF-NOTES.md section 4, steps 1 to 5, exactly as written. Open a pull request on branch weekly-review/<today's date>; never push to main. Finish with a three-line summary: grants checked, changes proposed, and the pull request link (or "skipped: no web access").
+```
+
+The prompt stays short on purpose: the process lives in this repo, so improving the routine means editing HANDOFF-NOTES.md, not the scheduled task.
 
 ---
 
