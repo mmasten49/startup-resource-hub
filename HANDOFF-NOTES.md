@@ -61,9 +61,9 @@ Lower stakes, lighter bar: the link opens the actual guide or tool (not a homepa
 
 ## 4. Routines
 
-### Weekly grant review (automated, Saturdays)
+### Weekly grant review (automated, Fridays)
 
-The most important routine. A scheduled task on the owner's Claude account runs it every Saturday morning and hands the owner one pull request to approve before the weekly newsletter goes out.
+The most important routine. A scheduled task on the owner's Claude account runs it every Friday at 8:00 AM Eastern and hands the owner one pull request to approve that day, before the weekly newsletter goes out.
 
 **What the run does, in order:**
 1. **Network check first.** Open three known-good official pages (sbir.gov, seed.nih.gov, sba.gov). If they don't load, the session can't reach websites: stop, change nothing, and report "weekly review skipped: no web access". Never mark a grant closed because its page wouldn't load.
@@ -136,7 +136,7 @@ Setup still to do (in this order):
 
 ## 7. Setting up the weekly scheduled task (owner, once, about 10 minutes)
 
-1. In Claude, create a scheduled task: **Saturdays, 7:45 AM Eastern**, in a cloud environment with this repo attached and **network access enabled** (the default setting can block outside websites, which makes the run skip itself in step 1).
+1. In Claude, create a scheduled task: **Fridays, 8:00 AM Eastern**, in a cloud environment with this repo attached and **network access enabled** (the default setting can block outside websites, which makes the run skip itself in step 1).
 2. Give it push access to the repo so it can open pull requests.
 3. Model: Sonnet is plenty for this job and keeps usage low.
 4. Turn on notifications so the summary reaches you when it finishes.
