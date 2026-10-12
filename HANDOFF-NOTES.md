@@ -14,7 +14,7 @@ How the Startup Resource Hub and the Small-Business Grant Finder are kept accura
 | Live sites | Netlify URLs: fill in here after setup step 2 in section 6. Until then, the Base44 versions are live |
 | Resource submissions | Netlify dashboard → the Resource Hub site → Forms |
 | Weekly review | Scheduled task on the owner's Claude account, Fridays 8:00 AM Eastern |
-| Newsletter | Alloy Growth Lab Weekly, Mondays 8:30 AM, built in Constant Contact |
+| Newsletter | Alloy Growth Lab Weekly, Mondays 8:30 AM. Drafted in the owner's Claude ("Alloy Weekly" project) from his weekly notes plus Friday's grant blurb, then sent from Constant Contact |
 
 ### Words used here
 
@@ -31,7 +31,7 @@ How the Startup Resource Hub and the Small-Business Grant Finder are kept accura
 | --- | --- | --- |
 | Owner | Antony Seppi | Approves anything that changes what founders see. Decides exceptions to the rules below. |
 | Maintainer | Whoever Antony assigns | Runs the routines in section 4, verifies listings, makes the edits. |
-| Newsletter editor | Whoever builds the Alloy Weekly in Constant Contact | Copies the grant blurb from that week's merged pull request into Monday's newsletter. If nothing was merged, leaves the grant section out rather than reusing last week's. |
+| Newsletter editor | Antony Seppi, until the next Castleberry intern takes over | Pastes the week's notes and the grant blurb into the Alloy Weekly project, then copies the draft into Constant Contact. Copies the grant blurb from that week's merged pull request into Monday's newsletter. If nothing was merged, leaves the grant section out rather than reusing last week's. |
 | Claude Code | Weekly scheduled task on the owner's Claude account, plus on-demand use | Does the research, checking and file edits. Opens a pull request; never pushes listing changes to `main` itself. |
 
 The owner's one recurring job is the Friday approval (section 4, "What the owner does each Friday"). If the scheduled task stops running, the owner or maintainer runs the review by hand with the prompt in section 4. Skipping it is how a grant list goes stale.
@@ -176,9 +176,9 @@ Setup still to do (in this order):
 4. Set up the weekly scheduled task on the owner's Claude account (section 7). Do this only after step 3: until Base44 is unpublished, the task's edits wouldn't reach the live site.
 5. Make the repo private (repo → Settings → General → Danger Zone → Change visibility). It is public right now, so anyone can read these notes. Netlify works the same with a private repo; only the GitHub Pages preview stops.
 6. Fill in the live Netlify URLs in the quick reference at the top of this file.
-7. Run the first quarterly link check by hand rather than waiting for January. The 91 Resource Hub links have never been checked.
+7. Run the first quarterly link check by hand rather than waiting for January. The 91 Resource Hub links have never been checked.8. Move newsletter drafting from ChatGPT to an "Alloy Weekly" project in the owner's Claude, and run one issue both ways to confirm the Claude draft matches before switching.
 
-Still to confirm: who builds the Monday newsletter once Matthew Masten is no longer doing it. That person is the newsletter editor in section 1.
+**For the next Castleberry intern:** start with this file. The intern takes over the newsletter editor and maintainer roles in section 1; the owner keeps approving the Friday pull request. Ask the owner to share the Alloy Weekly project instructions, or recreate the project from them.
 
 ## 7. Setting up the weekly scheduled task (owner, once, about 10 minutes)
 
