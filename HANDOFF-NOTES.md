@@ -1,109 +1,129 @@
-# Grant Finder handoff notes (October 12, 2026)
+# Operating the Alloy founder hubs
 
-> **Links were not opened directly** (this session's network blocked every site), so everything below comes from web search. **Click each replacement URL before using it.**
+How the Startup Resource Hub and the Small-Business Grant Finder are kept accurate after handoff. CLAUDE.md covers the file formats. This document covers who does what, when, and the bar a listing has to clear.
 
-This covers the 23 grants in `grant-finder/data/grants.json` only. The 91 Startup Resource Hub links were not checked. **Update Oct 11, 2026: changes applied by Matthew. See "Applied" at the bottom.**
-
-**Summary:** keep 3, fix 6 (for 3 of those, removing is also an option), remove 14. Only one Ohio-specific grant is on the list, and its link goes to a paid aggregator.
-
-| # | Grant | Recommendation |
-| --- | --- | --- |
-| 1 | NSF America's Seed Fund | Keep |
-| 2 | SBIR Topics | Keep |
-| 3 | Burroughs Wellcome Climate & Health | Remove (closed) |
-| 4 | Secretsos Grant | Fix or remove (charges an application fee) |
-| 5 | NASE Growth Grant | Fix |
-| 6 | Verizon Digital Ready | Keep |
-| 7–8 | Skip $1,000 / Skip $10,000 | Remove (Alloy blocks Skip elsewhere) |
-| 9 | NIH Small Business Research | Fix |
-| 10 | EDA Investment Assistance | Fix or remove |
-| 11 | SBA STEP Grants | Fix |
-| 12–13 | Two Minnesota health grants | Remove |
-| 14, 18 | Two Vermont Working Lands grants | Remove |
-| 15–16 | Somerset Hills (NJ), NVRH (VT) | Remove |
-| 17 | Restaurant Accelerator (Grubhub) | Remove (no 2026 round) |
-| 19 | UArctic Entrepreneurship Fund | Remove |
-| 20–21 | Mississippi Arts Commission (2) | Remove |
-| 22 | Homeland Security EOC Grants | Remove |
-| 23 | Ohio Small Business Support Grants | Fix (it's the one Ohio grant) or remove |
-
-Numbers follow the order in `grants.json`.
+**The one rule behind everything here:** a listing goes on an Alloy-branded page only after a person has checked it against the program's own official page. Search results, aggregator sites, AI suggestions and news articles are leads, never sources. The October 2026 audit (bottom of this file) is what happens when that rule is skipped.
 
 ---
 
-## 1. Broken or redirecting links
+## 1. Roles
 
-**Not checked.** No URL could be opened from this session. Search did turn up two links that have probably moved:
-
-- **Burroughs Wellcome (#3):** the fund's page now appears to be at `bwfund.org/grants/...`, while ours points to `bwfund.org/funding-opportunities/...`. This doesn't matter if the grant is removed (see section 3).
-- **NASE Growth Grant (#5):** NASE's current grants page appears to be `https://www.nase.org/become-a-member/grants-and-scholarships` *(unverified)*, while ours points to a deeper `.../member-benefits/business-resources/growth-grants` path. **Fix** to the new URL after clicking it.
-
-A full link check (both hubs) still needs to be done from a machine with normal internet access.
-
-## 2. Middleman or paywalled pages
-
-| # | Grant | Current link | Problem | Recommendation |
-| --- | --- | --- | --- | --- |
-| 23 | Ohio Small Business Support Grants | `ohio.grantwatch.com/...` | GrantWatch hides current grant details behind a paid subscription. I couldn't identify which real program this listing is. Nothing matching "up to $5,000, due Dec 18, 2026" turned up. | **Fix or remove.** Our listing can't be traced to a real program, so remove it as written. Ohio programs Antony could add in its place: **JobsOhio Small Business Grant** (rolling, up to $50,000, through a regional partner such as REDI Cincinnati) and **Ohio TechCred** (employer training reimbursement, window reported as Oct 1–30, 2026). Both are unverified, so find their official pages before adding. |
-| 9 | NIH Small Business Research Grants | `grants.nih.gov/grants/guide/COVID-Related.cfm` | Official NIH site, but the wrong page: a list of COVID-era notices. | **Fix** to `https://seed.nih.gov/` *(unverified)*, NIH's small-business funding hub. NIH's SBIR/STTR parent announcements reportedly reopened after the April 2026 reauthorization. Upcoming due dates are reported as Jan 5 and Apr 5, 2027. Also remove the COVID wording from the description. |
-| 10 | EDA Investment Assistance | `uschamber.com/...` | A US Chamber article, not the program. Also, EDA Public Works grants go to local governments, nonprofits and universities (awards from about $100,000, with a required cost-share match). Small businesses can't apply. | **Fix** to EDA's own page, `https://www.eda.gov/funding/programs/public-works` *(unverified; I couldn't find it through search)*, and reword "best for" to economic-development organizations. Or **remove**, because founders can't apply directly. |
-| 11 | SBA STEP Grants | `sba.gov/.../grants` | SBA's general grants page. Founders apply to STEP through their state, not SBA. | **Fix** to SBA's directory of state STEP offices, `https://www.sba.gov/funding-programs/grants/state-trade-expansion-program-step/directory-step-awardees` *(unverified)*. Ohio runs STEP money through the Department of Development's export grants (IMAGE and the Export Training Grant), so a link to that Ohio page would fit Cincinnati founders even better if Antony can find it. |
-| 4 | Secretsos Grant | `secretsos.com/grants/` | The program's own page, but it charges an application fee (reported as $15 in 2024; the current amount is unconfirmed). Sources say it pays $2,500 a quarter and excludes AK, FL, HI, NY and RI, so Ohio founders qualify. | Recommend **remove**, because it charges to apply. If Alloy is fine with a small fee, **keep** and add "application fee" to the description. |
-| 15–17, 19–22 | Somerset Hills, NVRH, Restaurant Accelerator, UArctic, Mississippi ×2, Homeland Security EOC | `grantable.co/...` category pages | Aggregator category pages, not program pages. | All are recommended for removal below, so they don't need new links. |
-| 14, 18 | Vermont Working Lands ×2 | `vermontbiz.com/...` | A news article. | Recommended for removal below. |
-
-## 3. Expired or out-of-date grants
-
-| # | Grant | What search found | Recommendation |
-| --- | --- | --- | --- |
-| 3 | Burroughs Wellcome Climate Change & Human Health Seed Grants | Last review cycle was **July 23, 2026**. Funding ran Fall 2023 to Summer 2026. It's also for academic researchers, not founders. Its "Rolling through Jul 2026" deadline means the page will never hide it automatically. | **Remove** |
-| 17 | Restaurant Accelerator and Community Fund Grant (National ACE + Grubhub) | The 2025 round ran Oct 1–24, 2025, and recipients were announced Dec 2, 2025. No 2026 round has been announced. It's national and would suit Cincinnati restaurants if it returns. | **Remove for now.** If it comes back, re-add it with the National ACE page (`https://www.nationalace.org/`) as the link. |
-| 16 | NVRH Community Health Fund | NVRH's own page shows the window closed **Oct 17, 2025**; our "October 17, 2026" seems to be a year-labeling error. Vermont-only. | **Remove** |
-| 15 | Somerset Hills Community Health Foundation Grant | The foundation's page says the 2026 cycle closed **Feb 1, 2026**. Our Oct 15, 2026 date came from an aggregator. New Jersey only. | **Remove** |
-| 22 | Homeland Security Emergency Operations Center Grants | The FY2026 FEMA program closed **July 15, 2026**. Only state governments can apply. It has nothing to do with Mississippi, despite where we found it. | **Remove** |
-| 13 | Primary Care Residency Expansion (MN) | The latest official deadline found was Sept 5, 2025. The Oct 16, 2026 date comes only from an aggregator. It's for medical residency programs. | **Remove** |
-| 12 | Mental Health Cultural Community Continuing Education (MN) | Minnesota's own grants page lists the timing as "TBD". The Oct 26, 2026 date comes only from an aggregator. It's for clinical supervisors. | **Remove** |
-
-## 4. Grants that don't fit Cincinnati founders
-
-| # | Grant | Why | Recommendation |
-| --- | --- | --- | --- |
-| 7–8 | Skip $1,000 Instant Grants / Skip $10,000 Grants | National. The $1,000 drawing reportedly needs no purchase, but one of the two $10,000 awards each cycle is limited to paid Skip Plus/Pro members. Both entries also point to the same URL. Alloy's other hub blocks Skip as pay-to-apply. | **Remove both**, to match Alloy's existing policy. |
-| 14 | Service Provider and Producer Association Grant (VT) | Real and open (Sept 17 – Nov 5, 2026), but Vermont-only. | **Remove** |
-| 18 | Working Lands Business Enhancement Grant (VT) | Real and open (Oct 9 – Dec 10, 2026), but Vermont-only. | **Remove** |
-| 19 | UArctic Entrepreneurship Fund | Real and open until **Oct 31, 2026**, but only for products that benefit the Arctic. | **Remove** |
-| 20 | Mississippi Arts Commission Project Grants | Mississippi-only, and for-profit businesses can't apply. Our amount ($25,000–$500,000) is wrong; sources say $250–$5,000. | **Remove** |
-| 21 | Mississippi Arts Commission Mini-Grants | Same problems. Ours says $20,000–$100,000; sources say $200–$1,000. | **Remove** |
-
-## Keep as is
-
-| # | Grant | Notes |
+| Role | Who | Does |
 | --- | --- | --- |
-| 1 | NSF America's Seed Fund | Open. Founders must submit a Project Pitch first. Next full-proposal deadline reported as **Nov 4, 2026**. Phase I awards up to $305,000. The description's "~$200M annually" could be updated (sources say about $250M for FY2026). |
-| 2 | SBIR Topics | SBIR/STTR were reauthorized through 2031 in April 2026, and agencies are posting new topics. |
-| 6 | Verizon Small Business Digital Ready | Open. Take 2 courses by **Dec 7, 2026** to unlock the application. 10 grants of $10,000 a month through Dec 2026. Run by LISC. |
+| Owner | Antony Seppi | Approves anything that changes what founders see. Decides exceptions to the rules below. |
+| Maintainer | Whoever Antony assigns | Runs the routines in section 4, verifies listings, makes the edits. |
+| Claude Code | Used by either | Does the research, checking and file edits. Proposes changes; does not publish without a person's yes. |
 
-(#5 NASE also stays, but needs its link fixed; see section 1. It's for NASE members only, and membership is paid. Grants of up to $4,000, reviewed quarterly.)
+If no maintainer is assigned, the owner runs the monthly review. Skipping it is how a grant list goes stale.
 
-## After applying changes
+## 2. How a change flows
 
-1. Check that the JSON still parses: `python3 -m json.tool grant-finder/data/grants.json > /dev/null`
-2. Set `last_reviewed` in `grants.json` to the date the changes are made.
-3. Removing the 14 grants marked remove leaves 9. Only one of those (#23 Ohio, Dec 18) has a real date in the file, and it's flagged for replacement. So the calendar download could end up empty unless real dates are added (for example NSF's Nov 4 deadline). It's worth adding a few real Ohio or Cincinnati programs (JobsOhio, Ohio TechCred, local CDFI or chamber grants) so the list stays useful.
+```
+Lead (search, newsletter, submission, partner tip, AI suggestion)
+   │
+   ▼
+Verify against the official program page  ──fails──▶  Drop it. Note why in the commit message if it was submitted.
+   │ passes every check in section 3
+   ▼
+Edit the JSON file (one listing per commit where practical)
+   │
+   ▼
+Run the pre-commit checks (CLAUDE.md)  ──▶  Commit with a clear message  ──▶  Push to main  ──▶  Site redeploys
+```
+
+**Transition rule (until the Base44 versions are unpublished):** founders still see the Base44 sites. Any content change has to be made in both places, the JSON file here and the Base44 app, or the two drift apart. Once Netlify is live and Base44 is unpublished, this repo is the only source of truth.
+
+## 3. The bar a listing has to clear
+
+### Grant Finder: every check must pass
+
+| Check | Pass means | Common failure |
+| --- | --- | --- |
+| Official source | The `url` is the funder's own program page | grantable.co, grantwatch.com, news articles, chamber blog posts |
+| Real and current | The page shows an open round, or a confirmed upcoming round with dates | Last year's cycle relabeled with this year's date |
+| Eligible | For-profit small businesses or founders can apply, and Ohio/Cincinnati applicants qualify (Ohio-specific or national) | State-only programs elsewhere; grants only governments, universities or nonprofits can apply for |
+| Free to apply | No application fee and no paid purchase to enter | Pay-to-apply platforms (Alloy blocks Skip for this reason) |
+| Facts match the page | `funding`, `deadline`, `best_for` and `description` are copied from the official page, not an aggregator | Amounts inflated 100x; wrong audience |
+| Deadline is usable | A real date (`December 18, 2026`) if one exists. `Rolling` only for truly open-ended programs | `Rolling through Jul 2026`: the site treats anything containing "Rolling" as open-ended, so it never hides itself. Write the end date instead |
+
+**Exceptions** (membership-gated grants, programs founders reach through an intermediary) need the owner's yes, and the description must say so in plain words, for example "NASE members only; membership is paid."
+
+**Setting `urgency`** (the site does not calculate it, so set it by this rule and recheck monthly):
+- `closing_soon`: dated deadline within 30 days
+- `upcoming`: dated deadline more than 30 days out
+- `rolling`: no fixed deadline
+
+**Setting `category`:** `tech` for R&D and SBIR-style funding, `health` for health and life science, `infra` for infrastructure and disaster recovery, `general` for everything else.
+
+### Startup Resource Hub
+
+Lower stakes, lighter bar: the link opens the actual guide or tool (not a homepage or paywall), it is free or clearly labeled as a paid book or product, and it fits a group and subcategory in `groups.json`.
+
+## 4. Routines
+
+### Monthly grant review (first week of each month, about 30 minutes)
+
+The most important routine. Paste into Claude Code from a session that can open websites:
+
+```
+Run the monthly Grant Finder review using HANDOFF-NOTES.md section 3.
+For every grant in grant-finder/data/grants.json: open the official page, confirm it is still open, and check funding, deadline, eligibility and fee against the page. Recalculate urgency from today's date.
+Then show me a table: grant, status (ok / update / remove), what changed, evidence URL.
+Do not edit anything until I approve. After I approve, make the edits, set last_reviewed to today, run the pre-commit checks, and commit as "Grant Finder: monthly review YYYY-MM".
+```
+
+Outcome to aim for: no expired grants on the page, every urgency label correct, `last_reviewed` within the last 31 days.
+
+### Adding new grants (during the monthly review, target 2 to 3 a month until the list has real Ohio coverage)
+
+Where to look for leads (still verify each on its own official page):
+- Ohio Department of Development (including Ohio's STEP export grants)
+- JobsOhio and REDI Cincinnati
+- Hamilton County Office of Small Business, Cincinnati-area CDFIs and chambers
+- SBA, SBIR.gov, Grants.gov, NIH SEED, NSF America's Seed Fund
+
+```
+Find 3 grants currently open to for-profit small businesses in Ohio or Cincinnati, or open nationally, using HANDOFF-NOTES.md section 3. Use the sources listed in section 4 as starting points, but cite only official program pages. For each, show me the proposed JSON entry and the evidence for every field. Do not add anything until I approve.
+```
+
+### Resource submissions (within a week of each one)
+
+Submissions arrive in Netlify under Forms (and by email if notifications are on). Check each against the Resource Hub bar in section 3. Approved ones are added to `resources.json`; rejected ones need no action. Nothing publishes automatically.
+
+### Quarterly link check (January, April, July, October)
+
+```
+Open every URL in startup-hub/data/resources.json and grant-finder/data/grants.json. List anything that is broken, redirects to a homepage, or now sits behind a paywall, with a suggested replacement from the same publisher. Do not edit anything until I approve.
+```
+
+Note: Claude Code cloud sessions can block outside websites by default. If every link fails, that is the network setting, not dead links. Run this from a session with network access enabled, or locally.
+
+## 5. Records
+
+- **Git history is the change log.** One clear commit message per change, for example `Grant Finder: add JobsOhio Small Business Grant` or `Grant Finder: remove UArctic Fund (closed Oct 31)`.
+- **`last_reviewed`** in `grants.json` is changed only after a full monthly review. It is shown publicly as "List reviewed <date>", so it must be true.
+- **Nothing is lost.** Every removed listing is recoverable from git history.
+
+## 6. Current state (October 12, 2026)
+
+**Grant Finder: 8 grants, all real, none Ohio-specific, none with a dated deadline** (so the calendar download is disabled).
+
+Open decisions for the owner:
+1. **Secretsos Grant** charges an application fee, which fails the "free to apply" check. Remove, or keep as a labeled exception.
+2. **EDA Investment Assistance** is for governments and economic development organizations, not founders. Remove, or keep as a labeled exception.
+3. **NASE Growth Grant** requires paid membership. Already labeled in "best for"; confirm it stays as an exception.
+4. **Verizon Digital Ready** says `Rolling through Dec 2026`, which will never hide itself. At the next review, change the deadline to its actual end date.
+
+Setup still to do (in this order):
+1. Transfer this repo to the owner's GitHub account.
+2. Connect both folders to Netlify under Alloy's account (steps in README.md). Turn on Forms email notifications for the Resource Hub.
+3. Unpublish the two Base44 apps. From then on, the transition rule in section 2 no longer applies.
+4. Run the first quarterly link check. The 91 Resource Hub links have never been checked.
 
 ---
 
-## Applied (Oct 11, 2026)
+## Appendix: why these rules exist (October 2026 audit)
 
-Matthew approved pulling everything that isn't real or doesn't fit. Applied to both `grants.json` and the live Base44 Grant Finder, so they match.
+During the move off Base44, all 23 grants were researched. Only 8 survived, and 4 of those needed corrected links. The other 15 were removed: out-of-state programs (Minnesota, Vermont, New Jersey, Mississippi), rounds that had already closed (including one listed with a deadline a year off), amounts inflated roughly 100 times, a grant only state governments could apply for, pay-to-apply Skip grants, and an "Ohio" grant that could not be traced to any real program. Most were added on October 2, 2026 by an AI discovery button that pulled from aggregator sites and published without a human check. That button was removed in the migration.
 
-- **Removed 15:** the 14 marked remove above, plus #23 Ohio Small Business Support Grants (couldn't be traced to a real program). On Base44 they were moved to the trash, not erased, so they can be restored. The originals are also in git history (commit `ffb8209`).
-- **Fixed 4 links, each opened and confirmed to load:**
-  - NASE: `https://www.nase.org/become-a-member/grants-and-scholarships` (confirms up to $4,000, members only)
-  - NIH: `https://seed.nih.gov/` (NIH's SBIR/STTR hub; COVID wording removed)
-  - SBA STEP: the STEP awardee directory (lists Ohio's contact at the Ohio Department of Development)
-  - EDA: `https://www.eda.gov/funding/programs/public-works` ("best for" reworded: businesses can't apply directly)
-- **Left as is, still Antony's call:** Secretsos (charges an application fee) and EDA (real, but founders can't apply).
-- `last_reviewed` set to 2026-10-11.
-
-**8 grants remain, and none has a dated deadline,** so the calendar download is disabled until real dated programs are added. Next step: add verified Ohio and Cincinnati programs (JobsOhio Small Business Grant, Ohio TechCred, REDI Cincinnati, local CDFIs) from their official pages.
+Full findings: commit `642ca44`. Changes applied: commit `556ec8f`. The removed Base44 records are in that app's trash and can be restored.
