@@ -17,17 +17,20 @@ Open this repo in Claude Code and ask in plain English, for example:
 
 `CLAUDE.md` tells Claude how the files are laid out and what to check before committing.
 
-## Putting the sites on Netlify (one time, about 5 minutes)
+## Putting the sites on Netlify (owner's account, one time, about 15 minutes)
 
-Do this once per site. Repeat for the second folder.
+Do this from the account that owns this repo, after the repo has been transferred to it. Two Netlify sites come from this one repo, one per folder.
 
-1. In Netlify: **Add new site → Import an existing project → GitHub**, and pick this repo.
-2. **Base directory:** `startup-hub` (or `grant-finder` for the second site).
-3. **Build command:** leave empty. **Publish directory:** `startup-hub` (or `grant-finder`).
-4. Deploy. Rename the site under **Site configuration → Change site name** (for example `alloy-startup-hub`).
-5. For the Startup Resource Hub only: under **Forms → Form notifications**, add an email notification so new submissions get sent to whoever reviews them.
+1. Go to netlify.com and **Sign up with GitHub**, using the GitHub account that owns this repo.
+2. **Add new site → Import an existing project → GitHub.** Authorize Netlify when asked, then pick this repo.
+3. **Base directory:** `startup-hub`. Leave everything else blank; `startup-hub/netlify.toml` supplies the rest. Click **Deploy**.
+4. **Site configuration → Change site name** → `alloy-startup-hub` (or the closest available name). The site is now at `https://alloy-startup-hub.netlify.app`.
+5. Repeat steps 2 to 4 with Base directory `grant-finder` and a name like `alloy-grant-finder`.
+6. On the Startup Resource Hub site only: **Forms → Enable form detection**, then **Deploys → Trigger deploy** so Netlify picks up the form. Under **Forms → Form notifications**, add an email notification to whoever reviews submissions.
+7. Test: open both sites, check the grant list and the search, and send one test submission through "Submit a Resource". It should appear under Forms.
+8. Put the two URLs in the quick reference at the top of HANDOFF-NOTES.md and in the newsletter.
 
-Until then, the GitHub Pages copy works as a preview (the submit form only works on Netlify).
+From then on, every merge to `main` redeploys both sites automatically.
 
 ## What changed from the Base44 version
 

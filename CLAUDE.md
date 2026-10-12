@@ -54,7 +54,7 @@ Almost every request will be "add this resource", "remove that grant", "fix this
 
 ## Hosting
 
-Each folder is deployed as its own Netlify site from this repo (Base directory = the folder, no build command, publish directory = the folder). Pushing to `main` redeploys both. See README.md.
+Each folder is deployed as its own Netlify site from this repo (Base directory = the folder; the folder's netlify.toml sets the rest). Pushing to `main` redeploys both. See README.md.
 
 ## Style
 

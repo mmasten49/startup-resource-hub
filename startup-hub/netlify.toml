@@ -1,0 +1,4 @@
+# Netlify settings for this site. Set the site's Base directory to "startup-hub";
+# everything else comes from this file. No build step: the folder is deployed as is.
+[build]
+  publish = "."
