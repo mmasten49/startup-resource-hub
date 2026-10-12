@@ -63,7 +63,7 @@ Lower stakes, lighter bar: the link opens the actual guide or tool (not a homepa
 
 ### Weekly grant review (automated, Fridays)
 
-The most important routine. A scheduled task on the owner's Claude account runs it every Friday at 8:00 AM Eastern and hands the owner one pull request to approve that day, before the weekly newsletter goes out.
+The most important routine. A scheduled task on the owner's Claude account runs it every Friday at 8:00 AM Eastern and hands the owner one pull request. The newsletter goes out Monday at 8:30 AM, so the window to merge is Friday through Monday 8:00 AM.
 
 **What the run does, in order:**
 1. **Network check first.** Open three known-good official pages (sbir.gov, seed.nih.gov, sba.gov). If they don't load, the session can't reach websites: stop, change nothing, and report "weekly review skipped: no web access". Never mark a grant closed because its page wouldn't load.
@@ -73,7 +73,7 @@ The most important routine. A scheduled task on the owner's Claude account runs 
 5. **The pull request description** contains:
    - a table of every grant: ok / updated / removed / new, what changed, and the evidence URL
    - anything the run was unsure about, listed separately and left unchanged
-   - a ready-to-paste newsletter blurb: "New on the Grant Finder" and "Closing soon", two to four lines each, no more
+   - a ready-to-paste newsletter blurb for the coming Monday: "New on the Grant Finder" and "Closing soon", two to four lines each, no more. "Closing soon" only lists deadlines at least 7 days after that Monday, so nothing in the newsletter has closed by the time founders read it.
 
 **The owner then reviews and merges.** Merging redeploys the site. Not merging changes nothing; the site stays as it was. Nothing reaches founders without that click.
 
